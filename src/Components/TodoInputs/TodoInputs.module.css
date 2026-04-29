@@ -1,0 +1,31 @@
+.messageSuccess {
+  position: absolute;
+  top: 30px;
+  animation: position 2.5s ease-in-out forwards;
+}
+
+@keyframes position {
+  0% {
+    right: -240px;
+  }
+
+  10% {
+    right: 20px;
+  }
+
+  15% {
+    right: 0px;
+  }
+
+  90% {
+    right: 0px;
+  }
+
+  95% {
+    right: 20px;
+  }
+
+  100% {
+    right: -240px;
+  }
+}
