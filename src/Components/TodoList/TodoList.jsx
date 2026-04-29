@@ -44,12 +44,13 @@ export default function TodoList() {
     <>
       <section className="min-h-[78vh]">
         <div className="w-full px-3 lg:px-6 md:w-3/4 mx-auto">
-          <h2 className="capitalize flex justify-between underline mb-6 text-3xl w-full md:w-[58%] lg:w-[30%] md:mb-7 font-bold scale-y-125 text-blue-800">
+          <h2 className="capitalize underline text-2xl md:text-3xl w-full md:w-[58%] lg:w-[30%] mb-3 mt-4 md:mb-7 font-bold scale-y-125 text-blue-800">
+            {" "}
             Todo List
           </h2>
           <div className="relative overflow-x-hidden shadow-md rounded-2xl sm:rounded-xl w-full mb-8">
             <table className="w-full text-sm text-left text-gray-500 shadow-2xl">
-              <caption className="p-5 text-lg font-semibold text-left text-white bg-gray-800 relative">
+              <caption className="p-3 sm:p-5 text-lg font-semibold text-left text-white bg-gray-800 relative">
                 <div className="text-xs absolute rounded-full bg-yellow-600/50 h-20 w-16 md:h-24 md:w-20  justify-center items-center flex flex-col right-20 md:right-24 -top-10">
                   <span className="mt-9 md:mt-8 capitalize">pending</span>
                   <span className="w-5 h-5 flex items-center mt-0.5 justify-center rounded-full bg-gray-800/80">
@@ -62,16 +63,16 @@ export default function TodoList() {
                     {pendingCount.length}
                   </span>
                 </div>
-                <div className="text-xs absolute rounded-full bg-blue-700/50 h-14 w-24 md:h-16 md:w-28  justify-center items-start flex flex-col -right-10 top-12 md:top-16">
-                  <span className="ms-2 md:ms-4 capitalize text-left">
-                    All tasks
+                <div className="text-xs absolute rounded-full bg-blue-700/50 h-14 w-24 md:h-16 md:w-28  justify-center items-start flex flex-col -right-11 top-12 md:top-16">
+                  <span className="ms-1 md:ms-4 capitalize text-left">
+                    AllTasks
                   </span>
                   <span className="w-5 h-5 flex items-center mt-0.5 ms-5 md:ms-7 justify-center rounded-full bg-gray-800/80">
                     {tasksCount}
                   </span>
                 </div>
                 <span>My Tasks</span>
-                <p className="mt-1 text-sm font-normal text-gray-400">
+                <p className="mt-1 text-xs sm:text-sm font-normal text-gray-400">
                   Stay organized, stay focused, get things done
                 </p>
                 <h3 className="text-center mt-4 border-t-2 pt-1 w-3/4 mx-auto underline">
@@ -157,7 +158,10 @@ export default function TodoList() {
               <thead className="text-sm uppercase border-t-4 border-blue-800 bg-blue-950 text-blue-700">
                 <tr>
                   <th scope="col" className="px-3 md:px-6 w-1/12 py-3"></th>
-                  <th scope="col" className="px-3 md:px-6 w-6/12 py-3">
+                  <th
+                    scope="col"
+                    className="px-3 md:px-6 w-5/12 sm:w-6/12 py-3"
+                  >
                     Task Title
                   </th>
                   <th scope="col" className="px-3 md:px-6 w-1/12 py-3">
@@ -191,9 +195,9 @@ export default function TodoList() {
 
                         {task.check ? (
                           <div className="flex items-center gap-2 ms-2 md:ms-0">
-                            <div className="w-7 h-7 border-2 border-gray-500 rounded flex items-center justify-center peer-checked:bg-green-600/40 peer-checked:border-green-600 transition"></div>
+                            <div className="w-7 h-7 border-2 border-gray-500 rounded flex items-center justify-center transition"></div>
 
-                            <span className="text-gray-500 capitalize pe-2">
+                            <span className="text-gray-500 capitalize pe-2 hidden sm:block">
                               pending
                             </span>
                           </div>
@@ -205,7 +209,7 @@ export default function TodoList() {
                               ></i>
                             </div>
 
-                            <span className="text-gray-500 capitalize">
+                            <span className="text-gray-500 capitalize hidden sm:block">
                               completed
                             </span>
                           </div>
@@ -233,15 +237,26 @@ export default function TodoList() {
                     <td className="px-2 ms-3 md:px-6 py-4">{task.dueDate}</td>
 
                     <td className="px-2 md:px-6 py-3 text-right flex flex-row justify-evenly">
-                      {task.check == true ? (
-                        <button className="bg-green-500/20 hover:text-white px-3 py-1 rounded-lg cursor-default text-green-400 hover:underline">
-                          <i className="fa-solid fa-check"></i>
-                        </button>
-                      ) : (
-                        <button className="bg-green-500/20 hover:text-white px-3 py-1 rounded-lg cursor-default text-green-400 hover:underline opacity-0">
-                          <i className="fa-solid fa-check"></i>
-                        </button>
-                      )}
+                      <label>
+                        <input
+                          onChange={() => {
+                            if (!task.check) return;
+                            setTaskId(task.id);
+                            setOpenModalCheck(true);
+                          }}
+                          type="checkbox"
+                          className="hidden peer"
+                        />
+                        {task.check ? (
+                          <div className="bg-green-500/20 hover:text-white px-3 py-1.5 cursor-pointer rounded-lg text-green-400 hover:underline">
+                            <i className="fa-solid fa-check"></i>
+                          </div>
+                        ) : (
+                          <div className="px-3 py-1.5 cursor-default opacity-0">
+                            <i className="fa-solid fa-check"></i>
+                          </div>
+                        )}
+                      </label>
                       <button
                         className="border-2 border-red-700 hover:bg-red-700 bg-red-700/20 hover:text-white px-3 py-1 rounded-lg cursor-pointer text-red-700 hover:underline"
                         onClick={() => {
@@ -272,7 +287,10 @@ export default function TodoList() {
 
       {/* Modal Delete */}
       {openModalDelete && (
-        <div className="overflow-y-auto bg-gray-500/65 overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 justify-center items-center w-full md:inset-0 max-h-full">
+        <div
+          onClick={() => setOpenModalDelete(false)}
+          className="overflow-y-auto bg-gray-500/65 overflow-x-auto fixed top-0 right-0 left-0 bottom-0 z-50 justify-center items-center w-full md:inset-0 max-h-full"
+        >
           <div className="relative p-4 top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md max-h-full">
             <div className="relative rounded-lg shadow-2xl shadow-blue-950 bg-blue-950">
               <button
@@ -311,7 +329,10 @@ export default function TodoList() {
 
       {/* Modal Check */}
       {openModalCheck && (
-        <div className="overflow-y-auto bg-gray-500/65 overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 justify-center items-center w-full md:inset-0 max-h-full">
+        <div
+          onClick={() => setOpenModalCheck(false)}
+          className="overflow-y-auto bg-gray-500/65 overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 justify-center items-center w-full md:inset-0 max-h-full"
+        >
           <div className="relative p-4 top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md max-h-full">
             <div className="relative rounded-lg shadow-2xl shadow-blue-950 bg-blue-950">
               <button

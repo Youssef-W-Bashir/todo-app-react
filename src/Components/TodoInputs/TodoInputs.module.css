@@ -1,6 +1,5 @@
 .messageSuccess {
-  position: absolute;
-  top: 30px;
+  @apply top-4 sm:top-8 absolute;
   animation: position 2.5s ease-in-out forwards;
 }
 

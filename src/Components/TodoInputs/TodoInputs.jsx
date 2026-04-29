@@ -43,7 +43,7 @@ export default function TodoInputs() {
       <section className="relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col justify-center items-center h-[78vh] md:h-[77.7vh]">
-            <h2 className="capitalize underline text-3xl w-full md:w-[58%] lg:w-[30%] mb-3 md:mb-7 font-bold scale-y-125 text-blue-800">
+            <h2 className="capitalize underline text-2xl md:text-3xl w-full md:w-[58%] lg:w-[30%] mb-3 md:mb-7 font-bold scale-y-125 text-blue-800">
               add task
             </h2>
             <form
@@ -160,9 +160,11 @@ export default function TodoInputs() {
               >
                 Add Task
               </button>
+
+              {/* toast notification */}
               {message && (
                 <div
-                  className={`${style.messageSuccess} mt-4 px-8 py-4 w-fit bg-green-500/30 text-green-500 p-3 rounded`}
+                  className={`${style.messageSuccess} mt-4 sm:px-8 sm:py-4 w-fit bg-green-500/30 text-green-500 p-3 rounded`}
                 >
                   {message}
                 </div>

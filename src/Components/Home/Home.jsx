@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <section>
-        <div className="container mx-auto flex flex-col justify-center items-center h-[77.8vh]">
+        <div className="container mx-auto flex flex-col justify-center items-center h-[70vh] sm:h-[77.8vh]">
           <h2
             className={`text-center text-blue-800 ${style.textShadow} font-bold text-7xl tracking-wide scale-y-150`}
           >

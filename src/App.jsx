@@ -22,7 +22,9 @@ let routers = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={routers}></RouterProvider>
+      <div className="min-h-screen flex flex-col">
+        <RouterProvider router={routers}></RouterProvider>
+      </div>
     </>
   );
 }

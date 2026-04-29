@@ -37,7 +37,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <div className="mt-20 pt-4">
+      <div className="mt-20 md:pt-4 flex-1">
         <Outlet context={{ tasks, message, days, addTask, setTasks }}></Outlet>
       </div>
       <Footer />
